@@ -1,4 +1,4 @@
-package com.example.valterfranco.pi4projectprototype;
+package com.pi4.project;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.valterfranco.pi4projectprototype.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    String email;
+    String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +62,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String email = mEmailView.getText().toString();
-                String pass = mPasswordView.getText().toString();
+                email = mEmailView.getText().toString();
+                pass = mPasswordView.getText().toString();
 
                 final Response.Listener<String> response = new Response.Listener<String>() {
                     @Override
@@ -69,13 +72,18 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
 
                             if (jsonObject != null) {
-                                String name = jsonObject.getString("userName");
-                                //String  = jsonObject.getString("userName");
+                                   if(jsonObject.getString("userName"));
 
-                                Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
-                                intent.putExtra("name", name);
-                                intent.putExtra("test", "jadhkjfsbdk");
-                                LoginActivity.this.startActivity(intent);
+                                    Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
+                                    intent.putExtra("name", name);
+                                    intent.putExtra("test", "jadhkjfsbdk");
+                                    LoginActivity.this.startActivity(intent);
+                                }else{
+                                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
+                                    alertDialog.setMessage("Usuário ou senha inválidos")
+                                            .setNegativeButton("Tentar Novamente?", null)
+                                            .create()
+                                            .show();
 
                             } else {
                                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);

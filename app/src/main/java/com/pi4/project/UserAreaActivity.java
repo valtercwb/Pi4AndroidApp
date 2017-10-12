@@ -1,4 +1,4 @@
-package com.example.valterfranco.pi4projectprototype;
+package com.pi4.project;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import model.PatientsList;
+import com.example.valterfranco.pi4projectprototype.R;
 
 public class UserAreaActivity extends AppCompatActivity {
 
-    PatientsList mPatientsList;
+    //PatientsList mPatientsList;
     ListView mPatientListView;
     ProgressDialog mRefreshProgressDialog;
 
@@ -21,7 +21,7 @@ public class UserAreaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_area);
 
         mPatientListView = (ListView)findViewById(R.id.patient_list);
-        mPatientsList = new PatientsList(this);
+        //mPatientsList = new PatientsList(this);
 
         final EditText etUserName = (EditText) findViewById(R.id.user_name);
 
