@@ -1,4 +1,4 @@
-package com.pi4.project;
+package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +16,11 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.valterfranco.pi4projectprototype.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import me.org.pi4projectprototype.R;
 import ws.Login;
 
 /**
@@ -72,19 +72,19 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
 
                             if (jsonObject != null) {
-                                   if(jsonObject.getString("userName"));
+                                   if(jsonObject.getString("userName")!=""){
 
                                     Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
-                                    intent.putExtra("name", name);
+                                    intent.putExtra("name", jsonObject.getString("userName"));
                                     intent.putExtra("test", "jadhkjfsbdk");
                                     LoginActivity.this.startActivity(intent);
-                                }else{
-                                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
-                                    alertDialog.setMessage("Usuário ou senha inválidos")
-                                            .setNegativeButton("Tentar Novamente?", null)
-                                            .create()
-                                            .show();
-
+                                }else {
+                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
+                                alertDialog.setMessage("Usuário ou senha inválidos")
+                                        .setNegativeButton("Tentar Novamente?", null)
+                                        .create()
+                                        .show();
+                            }
                             } else {
                                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
                                 alertDialog.setMessage("Falha ao logar")
@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 };
 
-
                 Login lg = new Login(email, pass, response);
                 mLoginFormView = findViewById(R.id.login_form);
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
@@ -107,10 +106,6 @@ public class LoginActivity extends AppCompatActivity {
                 queue.add(lg);
             }
         });
-
-
     }
-
-
 }
 
