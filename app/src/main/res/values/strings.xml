@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Pi4ProjectPrototype</string>
-    
+    <string name="app_name"></string>
+
     <!-- Strings related to login -->
-    <string name="prompt_email">Login</string>
+    <string name="prompt_email">Usuário</string>
     <string name="prompt_password">Senha </string>
     <string name="action_sign_in">Entrar</string>
     <string name="action_sign_in_short">Entrar</string>
@@ -13,4 +13,26 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_navigation">Dados Gerais</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="pacientes">Pacientes</string>
+
+    <string name="castle_rock_dental">GravidApp</string>
+    <string name="dr_newsom_castlerockdental_com">upa.fazenda@riogrande.com</string>
+    <string name="schedule">Schedule</string>
+
+    <string name="available_appointments">Consultas disponiveis</string>
+    <string name="scheduled_appointments">Consultas programadas</string>
+    <string name="test">it worked</string>action_search
+    <string name="dialog_title">Error</string>
+    <string name="action_search">Buscar</string>
+
 </resources>
