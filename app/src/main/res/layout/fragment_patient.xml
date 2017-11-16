@@ -1,8 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -17,7 +17,22 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/patientph"
+                app:border_color="@android:color/white"
+                app:border_width="2dp"
+                app:finalHeight="100dp"
+                app:finalYPosition="2dp"
+                app:layout_behavior="org.cwb.pi4androidapp.activity.AvatarImageBehavior"
+                app:startHeight="2dp"
+                app:startToolbarPosition="2dp"
+                app:startXPosition="2dp" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -27,191 +42,794 @@
                 android:title="Collapsing Toolbar"
                 app:layout_collapseMode="pin" />
 
-            <ImageView
-                android:id="@+id/profileImg"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:layout_collapseMode="parallax"
-                app:srcCompat="@drawable/patientph" />
-
-
-
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:text="TextView" />
-    </android.support.v7.widget.CardView>
-
-    <EditText
-        android:id="@+id/editText"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="none"
-        android:text="Name" />
-                
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <!-- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-         android:layout_width="match_parent"\
-         android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-         <RelativeLayout
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/silver"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-             <ImageView
-                 android:id="@+id/header_cover_image"
-                 android:layout_width="match_parent"
-                 android:layout_height="200dp"
-                 android:scaleType="centerCrop"
-                 android:src="@drawable/schedule_icon" />
+                    <TextView
+                        android:id="@+id/tvDtPaciente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="Nome"
+                        android:gravity="center_horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp"
+                        android:text="Dados Paciente"
+                        tools:text="Dados Paciente" />
 
-             <ImageButton
-                 android:id="@+id/user_profile_photo"
-                 android:layout_width="120dp"
-                 android:layout_height="120dp"
-                 android:layout_below="@+id/header_cover_image"
-                 android:layout_centerHorizontal="true"
-                 android:layout_marginTop="-60dp"
-                 android:background="@drawable/profile_circular_border_imageview"
-                 android:elevation="5dp"
-                 android:padding="20dp"
-                 android:scaleType="centerCrop"
-                 android:src="@drawable/schedule_icon" />
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="10dp">
 
-             <RelativeLayout
-                 android:id="@+id/profile_layout"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/header_cover_image"
-                 android:background="#ebca0707"
-                 android:elevation="4dp"
-                 android:paddingBottom="24dp">
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                 <ImageView
-                     android:id="@+id/add_friend"
-                     android:layout_width="30dp"
-                     android:layout_height="30dp"
-                     android:layout_marginLeft="16dp"
-                     android:layout_marginTop="16dp"
-                     android:layout_toLeftOf="@+id/drop_down_option_menu"
-                     android:src="@drawable/schedule_icon" />
+                            <TextView
+                                android:id="@+id/tvNome"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Nome: "
+                                tools:text="Nome" />
 
-                 <ImageView
-                     android:id="@+id/drop_down_option_menu"
-                     android:layout_width="30dp"
-                     android:layout_height="30dp"
-                     android:layout_alignParentRight="true"
-                     android:layout_marginLeft="16dp"
-                     android:layout_marginTop="16dp"
-                     android:src="@drawable/schedule_icon" />
+                            <EditText
+                                android:id="@+id/etName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Juliana"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
 
-                 <TextView
-                     android:id="@+id/user_profile_name"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_centerHorizontal="true"
-                     android:layout_marginTop="76dp"
-                     android:text="Viral Android"
-                     android:textColor="#fff"
-                     android:textSize="24sp"
-                     android:textStyle="bold" />
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                 <TextView
-                     android:id="@+id/user_profile_short_bio"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_below="@+id/user_profile_name"
-                     android:layout_centerHorizontal="true"
-                     android:layout_marginTop="12dp"
-                     android:text="Android free tutorials and example"
-                     android:textColor="#fff"
-                     android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/tvEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Email"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Email: "
+                                tools:text="Email" />
 
-             </RelativeLayout>
+                            <EditText
+                                android:id="@+id/etEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="ju@gmail.com.br"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
 
-             <LinearLayout
-                 android:layout_width="fill_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/profile_layout"
-                 android:layout_marginTop="5dp"
-                 android:orientation="vertical">
+                        </TableRow>
 
-                 <TextView
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_margin="5dp"
-                     android:background="#fff"
-                     android:clickable="true"
-                     android:elevation="4dp"
-                     android:padding="20dp"
-                     android:text="Gestação" />
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                 <TextView
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_margin="5dp"
-                     android:layout_marginBottom="3dp"
-                     android:layout_marginTop="3dp"
-                     android:background="#fff"
-                     android:clickable="true"
-                     android:elevation="4dp"
-                     android:padding="20dp"
-                     android:text="Android Profile XMl UI Design" />
+                            <TextView
+                                android:id="@+id/tvNome6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Telefone: "
+                                tools:text="Telefone" />
 
-                 <TextView
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_margin="5dp"
-                     android:background="#fff"
-                     android:clickable="true"
-                     android:elevation="4dp"
-                     android:padding="20dp"
-                     android:text="Android Profile UI Design" />
+                            <EditText
+                                android:id="@+id/etPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="98898-4575"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
 
-                 <TextView
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_margin="5dp"
-                     android:layout_marginBottom="3dp"
-                     android:layout_marginTop="3dp"
-                     android:background="#fff"
-                     android:clickable="true"
-                     android:elevation="4dp"
-                     android:padding="20dp"
-                     android:text="Android Profile XMl UI Design" />
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                 <TextView
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_margin="5dp"
-                     android:background="#fff"
-                     android:clickable="true"
-                     android:elevation="4dp"
-                     android:padding="20dp"
-                     android:text="Android Profile UI Design" />
+                            <TextView
+                                android:id="@+id/tvAge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Idade: "
+                                tools:text="Idade" />
 
-             </LinearLayout>
+                            <EditText
+                                android:id="@+id/etAge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="22"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
 
-         </RelativeLayout>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-     </ScrollView>-->
+                            <TextView
+                                android:id="@+id/tvNome4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Tipo sanguineo: "
+                                tools:text="Tipo sanguineo" />
 
-</LinearLayout>
+                            <EditText
+                                android:id="@+id/etBloodType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="A+"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvNome3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Tipo Sangue Conj: "
+                                tools:text="Tipo Sangue Conj." />
+
+                            <EditText
+                                android:id="@+id/etPartnerBloodType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="O+"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvNome2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Ultimo Periodo: "
+                                tools:text="Ultimo Periodo" />
+
+                            <EditText
+                                android:id="@+id/etLastPeriod"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="22/07/2017"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvStatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Status: "
+                                tools:text="Status" />
+
+                            <EditText
+                                android:id="@+id/etStatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Juliana"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible"
+                                tools:text="Ativo" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/silver"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDtPaciente2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="Nome"
+                        android:gravity="center_horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp"
+                        android:text="Dados da Gestação"
+                        tools:text="Dados da Gestação" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" >
+
+                            <TextView
+                                android:id="@+id/tvPac"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Paciente código: "
+                                tools:text="Paciente código" />
+
+                            <EditText
+                                android:id="@+id/etPatCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="13245"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" >
+
+                            <TextView
+                                android:id="@+id/tvPlanned"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Planejada: "
+                                tools:text="Planejada" />
+
+                            <EditText
+                                android:id="@+id/etPlanned"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" >
+
+                            <TextView
+                                android:id="@+id/tvRisk"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Email"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Gestação de Risco: "
+                                tools:text="Gestação de Risco" />
+
+                            <EditText
+                                android:id="@+id/etRisk"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Sim"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" >
+
+                            <TextView
+                                android:id="@+id/tvidadeGest"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Idade Gestacional: "
+                                tools:text="Idade Gestacional" />
+
+                            <EditText
+                                android:id="@+id/etPregnancyWeek"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="24 semanas"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+                    </TableLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/silver"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvHistoric"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="Nome"
+                        android:gravity="center_horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp"
+                        android:text="Historico Médico"
+                        tools:text="Historico Médico" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPach7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Neoplasia: "
+                                tools:text="Neoplasia" />
+
+                            <EditText
+                                android:id="@+id/etNeoplasm"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvCardiopatia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Cardiopatia: "
+                                tools:text="Cardiopatia" />
+
+                            <EditText
+                                android:id="@+id/etHeartDisease"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPach2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Doença mental: "
+                                tools:text="Doença mental" />
+
+                            <EditText
+                                android:id="@+id/etMentalIllness"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPach3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Email"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Anomalia: "
+                                tools:text="Anomalia" />
+
+                            <EditText
+                                android:id="@+id/etAnomaly"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPach4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Diabetes: "
+                                tools:text="Diabetes" />
+
+                            <EditText
+                                android:id="@+id/etDiabetes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPach10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Tromboembolismo: "
+                                tools:text="Tromboembolismo" />
+
+                            <EditText
+                                android:id="@+id/etTrombo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPach9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Clamidia: "
+                                tools:text="Clamidia" />
+
+                            <EditText
+                                android:id="@+id/etChlamydia"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPach8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Sifilis: "
+                                tools:text="Sifilis" />
+
+                            <EditText
+                                android:id="@+id/etSyphilis"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvGono"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Gonorreia: "
+                                tools:text="Gonorreia" />
+
+                            <EditText
+                                android:id="@+id/etGonorrhea"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPach6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="phone"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="Aids: "
+                                tools:text="Aids" />
+
+                            <EditText
+                                android:id="@+id/etHiv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="Não"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+        <!-- </ScrollView>-->
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

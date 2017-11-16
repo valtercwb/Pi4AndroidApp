@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
 import org.cwb.pi4androidapp.R;
 import org.cwb.pi4androidapp.fragment.AboutUsFragment;
 import org.cwb.pi4androidapp.fragment.PatientListFragment;
@@ -30,6 +32,7 @@ public class NavigationActivity extends AppCompatActivity
         @BindView(R.id.nav_view)
         public NavigationView mNavigationView;
 
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -43,6 +46,9 @@ public class NavigationActivity extends AppCompatActivity
 
             mNavigationView.setNavigationItemSelectedListener(this);
             //mNavigationView.setCheckedItem(R.id.nav_data);
+
+            TextView txtProfileName = (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.user_name);
+            txtProfileName.setText(getIntent().getStringExtra("name"));
 
             if(getSupportFragmentManager().getBackStackEntryCount() == 0) {
                 //launchDataFragment();
@@ -89,10 +95,14 @@ public class NavigationActivity extends AppCompatActivity
             if (id == R.id.nav_patient) {
                 //launchPatientListFragment();
                 Intent intent = new Intent(this,UserAreaActivity.class);
+                intent.putExtra("tipo", 1);
                 NavigationActivity.this.startActivity(intent);
             } else if (id == R.id.nav_appointment) {
                // launchScheduleFragment();
                // launchAppointmentsFragment();
+                Intent intent = new Intent(this,UserAreaActivity.class);
+                intent.putExtra("tipo", 2);
+                NavigationActivity.this.startActivity(intent);
             } else if (id == R.id.nav_data) {
                 //launchDataFragment();
             }

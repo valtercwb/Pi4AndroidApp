@@ -12,4 +12,6 @@ public class Paths {
     public static final String AVAILABLE_APPOINTMENTS_URL = "";
 
     public static final int TIMEOUT_TIME = 10000;
+
+    //http://cwbpi4.herokuapp.com/webapi/patient/1/appointment
 }

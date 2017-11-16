@@ -1,8 +1,8 @@
 package org.cwb.pi4androidapp.activity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,27 +14,48 @@ import android.view.MenuItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
 import org.cwb.pi4androidapp.R;
 import org.cwb.pi4androidapp.adapter.TabPagerAdapter;
+import org.cwb.pi4androidapp.fragment.AppointmentFragment;
+import org.cwb.pi4androidapp.model.Appointment;
+import org.cwb.pi4androidapp.model.AppointmentList;
 import org.cwb.pi4androidapp.model.Patient;
 import org.cwb.pi4androidapp.model.Patient.RefreshHandlerPatient;
-import org.cwb.pi4androidapp.ws.Paths;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.cwb.pi4androidapp.model.PatientList;
 
-public class PatientDetailsActivity extends AppCompatActivity implements RefreshHandlerPatient {
+import java.util.List;
+
+
+public class PatientDetailsActivity extends AppCompatActivity implements RefreshHandlerPatient,
+AppBarLayout.OnOffsetChangedListener {
+
+    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.9f;
+    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
+    private static final int ALPHA_ANIMATIONS_DURATION              = 200;
+
+    private boolean mIsTheTitleVisible = false;
+    private boolean mIsTheTitleContainerVisible = false;
+
+    private LinearLayout mTitleContainer;
+    private TextView mTitle;
+    private AppBarLayout mAppBarLayout;
+    private Toolbar mToolbar;
 
     Bundle bundle = new Bundle();
     Patient p;
+    PatientList pList;
+
+    AppointmentList appointList;
+    ListView mAppointListView;
+    AppointAdapter appointAdapter;
+    //_____________________________________
     ProgressDialog mRefreshProgressDialog;
     ViewPager viewPager;
     PagerAdapter adapter;
@@ -72,98 +93,12 @@ public class PatientDetailsActivity extends AppCompatActivity implements Refresh
 
         //LoadPatientData(PatientDetailsActivity.this);
        p.LoadPatientData(PatientDetailsActivity.this,patientId);
-        /* final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Paths.PATIENT_URL + patientId , null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
 
-                        try {
-                            p = new Patient();
-                            p.setPatientId(response.getInt("patientId"));
-                            p.setPatientName(response.getString("patientName"));
-                            p.setPatientEmail(response.getString("patientEmail"));
-                            p.setPatientPhone(response.getString("patientPhone"));
-                            p.setPatientAge(response.getInt("patientAge"));
+        //appointAdapter = new AppointAdapter(appointList.GetAppointmentList());
+        //mAppointListView.setAdapter(appointAdapter);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        RequestQueue queue = Volley.newRequestQueue(PatientDetailsActivity.this);
-
-        queue.add(jsonObjectRequest);*/
-
-        /*Bundle bundle = getIntent().getExtras();
-        int patientId = bundle.getInt("patientId");*/
-
-        //LoadPatientData(patientId);
-     /*   viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        //appointList.GetAppoint((AppointmentList.RefreshHandler) PatientDetailsActivity.this,patientId);
     }
-
-
-
-   /* public void LoadPatientData(final PatientDetailsActivity handler) {
-        String patPath = Paths.PATIENT_URL + String.valueOf(patientId);
-        RequestQueue queue = Volley.newRequestQueue(PatientDetailsActivity.this);
-
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, patPath , null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            p.setPatientId(response.getInt("patientId"));
-                            p.setPatientName(response.getString("patientName"));
-                            p.setPatientEmail(response.getString("patientEmail"));
-                            p.setPatientPhone(response.getString("patientPhone"));
-                            p.setPatientAge(response.getInt("patientAge"));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("Erro","Response error");
-            }
-
-        });
-        queue.add(jsonObjectRequest);
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -176,9 +111,13 @@ public class PatientDetailsActivity extends AppCompatActivity implements Refresh
     public void onRefreshCompletedPatient(Boolean success,Patient p) {
         mRefreshProgressDialog.hide();
         if (success) {
+
+            // AppointAdapter appointAdapter = new AppointAdapter(appointList.GetAppointmentList());
+            // mAppointListView.setAdapter(appointAdapter);
+
             bundle.putParcelable("pa",p);
             viewPager = (ViewPager) findViewById(R.id.pager);
-            adapter = new TabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),bundle);
+            adapter = new TabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),bundle,this);
             viewPager.setAdapter(adapter);
 
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -186,8 +125,6 @@ public class PatientDetailsActivity extends AppCompatActivity implements Refresh
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
                     viewPager.setCurrentItem(tab.getPosition());
-
-
                 }
 
                 @Override
@@ -204,4 +141,93 @@ public class PatientDetailsActivity extends AppCompatActivity implements Refresh
             Toast.makeText(this, "Aconteceu um erro ao acessar o servidor.", Toast.LENGTH_LONG).show();
         }
     }
+
+    private void bindActivity() {
+        //mToolbar        = (Toolbar) findViewById(R.id.main_toolbar);
+        //mTitle          = (TextView) findViewById(R.id.main_textview_title);
+        //mTitleContainer = (LinearLayout) findViewById(R.id.main_linearlayout_title);
+        //mAppBarLayout   = (AppBarLayout) findViewById(R.id.main_appbar);
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
+        int maxScroll = appBarLayout.getTotalScrollRange();
+        float percentage = (float) Math.abs(offset) / (float) maxScroll;
+
+        handleAlphaOnTitle(percentage);
+        handleToolbarTitleVisibility(percentage);
+
+    }
+
+    private void handleToolbarTitleVisibility(float percentage) {
+
+        if (percentage >= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) {
+
+            if(!mIsTheTitleVisible) {
+                startAlphaAnimation(mTitle, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
+                mIsTheTitleVisible = true;
+            }
+
+        } else {
+
+            if (mIsTheTitleVisible) {
+                startAlphaAnimation(mTitle, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
+                mIsTheTitleVisible = false;
+            }
+        }
+    }
+    private void handleAlphaOnTitle(float percentage) {
+
+        if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
+            if(mIsTheTitleContainerVisible) {
+                startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
+                mIsTheTitleContainerVisible = false;
+            }
+
+        } else {
+            if (!mIsTheTitleContainerVisible) {
+                startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
+                mIsTheTitleContainerVisible = true;
+            }
+        }
+    }
+
+    public static void startAlphaAnimation (View v, long duration, int visibility) {
+
+        AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
+                ? new AlphaAnimation(0f, 1f): new AlphaAnimation(1f, 0f);
+        alphaAnimation.setDuration(duration);
+
+        alphaAnimation.setFillAfter(true);
+
+        v.startAnimation(alphaAnimation);
+    }
+
+////////////////////////////////////////
+public class AppointAdapter extends ArrayAdapter<Appointment> {
+
+    public AppointAdapter(List<Appointment> appoint) {
+        super(PatientDetailsActivity.this, 0, appoint);
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // If we weren' given a view, inflate one
+        if (convertView == null) {
+            convertView = PatientDetailsActivity.this.getLayoutInflater().inflate(R.layout.list_item_appoint, null);
+        }
+
+        // Get components
+        TextView tvAppointDate = convertView.findViewById(R.id.tvAppointDate);
+        TextView tvAppointReason = convertView.findViewById(R.id.tvAppointReason);
+
+        // Configure the view for this Country
+        Appointment c = getItem(position);
+        tvAppointDate.setText(c.getAppointmentId());
+        tvAppointReason.setText(c.getAppointmentId()+ " semanas ");
+
+        return convertView;
+    }
+    }
 }
+

@@ -47,14 +47,26 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
 
+        Intent intent = getIntent();
+        int x = intent.getIntExtra("tipo",1);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        if(x==1){
+           getSupportActionBar().setTitle("Pacientes ");
+        }else{
+            getSupportActionBar().setTitle("Marcar consulta");
+        }
+
         // Configurar os Componentes
         mPatientListView = (ListView) findViewById(R.id.patient_list);
         mPatientsList = new PatientList(this);
 
+
         adapter = new PatientsAdapter(mPatientsList.getPatients());
         mPatientListView.setAdapter(adapter);
+        if(x == 1){
         mPatientListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -67,7 +79,21 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
-        });
+        });}
+        else{
+            mPatientListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Patient pa = ((PatientsAdapter) mPatientListView.getAdapter()).getItem(i);
+
+                    Intent intent = new Intent(UserAreaActivity.this, ScheduleActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("patientId", pa.getPatientId());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
+        }
 
         if (mRefreshProgressDialog == null) {
             // Cria e configura o objeto ProgressDialog
@@ -82,13 +108,13 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
         mPatientsList.GetPatientsList(UserAreaActivity.this);
         // }
 
-        handleIntent(getIntent());
+        //handleIntent(getIntent());
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+       /* SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.search_menu, menu);
         // SearchView
@@ -114,7 +140,7 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
                 adapter.getFilter().filter(newText);
                 return false;
             }
-        });
+        });*/
 
         return true;
 

@@ -6,23 +6,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_patient"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/woman"
             android:title="Pacientes" />
         <item
             android:id="@+id/nav_appointment"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/data"
             android:title="Consultas" />
         <item
             android:id="@+id/nav_data"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Dados" />
-        <item
-            android:id="@+id/nav_contraction"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/calendar"
             android:title="Contrações" />
         <item
+            android:id="@+id/nav_contraction"
+            android:icon="@drawable/graph"
+            android:title="Dados" />
+        <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/settings"
             android:title="Configurações" />
     </group>
 
@@ -34,7 +34,7 @@
                 android:title="Site" />
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/information"
                 android:title="Sobre Nós" />
         </menu>
     </item>
