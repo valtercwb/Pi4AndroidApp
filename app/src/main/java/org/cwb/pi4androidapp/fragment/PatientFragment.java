@@ -64,7 +64,7 @@ public class PatientFragment extends Fragment {
         if(bundle!=null)
            p = bundle.getParcelable("pa");
 
-        toolbar.setTitle(p.getPatientName());
+        //toolbar.setTitle(p.getPatientName());
 
         etName.setText(p.getPatientName());
         etEmail.setText(p.getPatientEmail());

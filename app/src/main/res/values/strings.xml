@@ -35,4 +35,11 @@
     <string name="dialog_title">Error</string>
     <string name="action_search">Buscar</string>
 
+    <string-array name="doctors">
+        <item>Selecionar</item>
+        <item>Diogo Alpandre</item>
+        <item>Danielle Dalmazo</item>
+        <item>Maria De Medeiros</item>
+    </string-array>
+
 </resources>

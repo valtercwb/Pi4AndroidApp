@@ -55,7 +55,7 @@ public class Appointment implements Serializable, Comparable<Appointment>{
     }
 
     public String getAppDate() {
-        return appDate;
+        return this.appDate;
     }
 
     public void setAppDate(String appDate) {

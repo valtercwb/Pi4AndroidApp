@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.app.PendingIntent.getActivity;
@@ -101,22 +102,25 @@ import static android.app.PendingIntent.getActivity;
 public class AppointmentList {
 
         Context mContext;
+        int patientID = 0;
         List<Appointment> appointList;
         //
         // CONSTANTS
 
-        public String APPOINT_LIST_URL = "http://cwbpi4.herokuapp.com/webapi/patient/patientId/appointment";
+        public String APPOINT_LIST_URL = "http://cwbpi4.herokuapp.com/webapi/patient/";
 
         private String TAG = "Appointment.List";
 
-        public AppointmentList(){
+        public AppointmentList(Context context,int patientId){
+            mContext = context;
+            patientID = patientId;
             appointList = new ArrayList<>();
         }
 
-        public void GetAppoint(final RefreshHandler handler,int patientId) {
+        public void GetAppoint(final RefreshHandler handler) {
 
             RequestQueue queue = Volley.newRequestQueue(mContext);
-            JsonArrayRequest patientsRequest = new JsonArrayRequest(Request.Method.GET,APPOINT_LIST_URL, null, new Response.Listener<JSONArray>() {
+            JsonArrayRequest patientsRequest = new JsonArrayRequest(Request.Method.GET,APPOINT_LIST_URL + patientID + "/appointment", null, new Response.Listener<JSONArray>() {
 
                 @Override
                 public void onResponse(JSONArray response) {
@@ -126,21 +130,21 @@ public class AppointmentList {
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject o = response.getJSONObject(i);
                             Appointment app = new Appointment();
-                            app.setAppointmentId(o.getInt("patientId"));
+                            app.setAppDate(o.getString("appDate"));
                             appointList.add(app);
                         }
 
-                        Log.i(TAG, "Pacientes refreshed.");
+                        Log.i(TAG, "Consultas refreshed.");
                         handler.onRefreshCompleted(true);
                     } catch (JSONException e) {
-                        Log.e(TAG, "Can' refresh the Pacientes.", e);
+                        Log.e(TAG, "Can' refresh consultas.", e);
                         handler.onRefreshCompleted(false);
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e(TAG, "Can' refresh the country list.", error);
+                    Log.e(TAG, "Can' refresh the consultas.", error);
                     handler.onRefreshCompleted(false);
                 }
             });

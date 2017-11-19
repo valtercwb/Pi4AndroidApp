@@ -2,21 +2,17 @@ package org.cwb.pi4androidapp.activity;
 
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,9 +82,11 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Patient pa = ((PatientsAdapter) mPatientListView.getAdapter()).getItem(i);
 
-                    Intent intent = new Intent(UserAreaActivity.this, ScheduleActivity.class);
+                    Intent intent = new Intent(UserAreaActivity.this, AttendanceActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putInt("patientId", pa.getPatientId());
+                    bundle.putString("patientName", pa.getPatientName());
+
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
@@ -109,7 +107,6 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
         // }
 
         //handleIntent(getIntent());
-
     }
 
     @Override

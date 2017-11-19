@@ -219,7 +219,7 @@ public class AppointAdapter extends ArrayAdapter<Appointment> {
 
         // Get components
         TextView tvAppointDate = convertView.findViewById(R.id.tvAppointDate);
-        TextView tvAppointReason = convertView.findViewById(R.id.tvAppointReason);
+        TextView tvAppointReason = convertView.findViewById(R.id.tvSpeacialty);
 
         // Configure the view for this Country
         Appointment c = getItem(position);

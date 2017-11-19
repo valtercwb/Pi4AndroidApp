@@ -32,7 +32,6 @@ public class NavigationActivity extends AppCompatActivity
         @BindView(R.id.nav_view)
         public NavigationView mNavigationView;
 
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -130,13 +129,6 @@ public class NavigationActivity extends AppCompatActivity
         }*/
 
 
-
-        //Launches the appointments fragment
-        //private void launchAppointmentsFragment() {
-        //    AvailableAppointmentsFragment appointmentsFragment = new AvailableAppointmentsFragment();
-        //    appointmentsFragment.setPresenter(new AppointmentsPresenter(appointmentsFragment, getApplicationContext()));
-        //    getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.content_main, appointmentsFragment).commit();
-        //}
 
     }
 
