@@ -10,20 +10,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.cwb.pi4androidapp.contract.AppointmentContract;
 
 import java.util.Collections;
 import java.util.List;
 
+import org.cwb.pi4androidapp.fragment.AppointmentFragment;
 import org.cwb.pi4androidapp.model.Appointment;
+import org.cwb.pi4androidapp.model.Attendance;
 import org.cwb.pi4androidapp.ws.Paths;
 import org.cwb.pi4androidapp.ws.Utility;
 
 /**
  * Get Presenter for the Scheduling data
  */
-public class SchedulePresenter implements AppointmentContract.Presenter {
+public class SchedulePresenter implements AppointmentContract.Presenter{
     private RequestQueue mRequestQueue;
     public static final String TAG = "SchedulePresenter";
     private AppointmentContract.View mView;
@@ -57,10 +58,10 @@ public class SchedulePresenter implements AppointmentContract.Presenter {
                             @Override
                             public void onResponse(String response) {
                                 // Display the first 500 characters of the response string.
-                                List<Appointment> appointments = Utility.convertJsonStringToList(response, Appointment[].class);
+                                List<Attendance> attendances = Utility.convertJsonStringToList(response, Attendance[].class);
 
-                                Collections.sort(appointments);
-                                mView.showAppointments(appointments);
+                                //Collections.sort(attendances);
+                                mView.showAppointments(attendances);
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -79,9 +80,7 @@ public class SchedulePresenter implements AppointmentContract.Presenter {
             }
         }).start();
     }
-
     @Override
-    public void AppointmentClicked(Appointment appointment) {
-
+    public void AppointmentClicked(Attendance appointment) {
     }
 }

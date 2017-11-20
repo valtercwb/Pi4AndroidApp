@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.cwb.pi4androidapp.contract.AppointmentContract;
 import org.cwb.pi4androidapp.model.Appointment;
+import org.cwb.pi4androidapp.model.Attendance;
 import org.cwb.pi4androidapp.ws.Paths;
 import org.cwb.pi4androidapp.ws.Utility;
 
@@ -41,7 +42,7 @@ public class AppointmentsPresenter implements AppointmentContract.Presenter {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                List<Appointment> appointments = Utility.convertJsonStringToList(response, Appointment[].class);
+                                List<Attendance> appointments = Utility.convertJsonStringToList(response, Attendance[].class);
                                 mView.showAppointments(appointments);
                             }
                         }, new Response.ErrorListener() {
@@ -57,7 +58,7 @@ public class AppointmentsPresenter implements AppointmentContract.Presenter {
     }
 
     @Override
-    public void AppointmentClicked(Appointment appointment) {
+    public void AppointmentClicked(Attendance appointment) {
 
     }
 

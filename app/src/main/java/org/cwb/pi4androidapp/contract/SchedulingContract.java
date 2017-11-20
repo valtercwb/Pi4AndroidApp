@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 
 import org.cwb.pi4androidapp.base.BasePresenter;
 import org.cwb.pi4androidapp.base.BaseView;
+import org.cwb.pi4androidapp.model.Attendance;
 
 /**
  * Contract for View and Presenter of Scheduling an Appointment
@@ -35,6 +36,6 @@ public interface SchedulingContract {
          * @param firstName - user first name
          * @param lastName - user last name
          */
-        void submitAppointment(String firstName, String lastName);
+        void submitAppointment(Attendance attendance);
     }
 }

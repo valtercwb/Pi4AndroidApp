@@ -17,6 +17,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.cwb.pi4androidapp.contract.SchedulingContract;
 import org.cwb.pi4androidapp.model.Appointment;
+import org.cwb.pi4androidapp.model.Attendance;
 import org.cwb.pi4androidapp.model.NetworkingError;
 import org.cwb.pi4androidapp.model.User;
 import org.cwb.pi4androidapp.ws.Paths;
@@ -30,26 +31,23 @@ import java.io.UnsupportedEncodingException;
 public class SchedulingPresenter implements SchedulingContract.Presenter {
     public static final String TAG = "SchedulingPresenter";
     private SchedulingContract.View mView;
-    private Appointment mAppointment;
+    private Attendance mAttendance;
     private RequestQueue mRequestQueue;
 
 
-    public SchedulingPresenter(SchedulingContract.View view, Appointment appointment, Context context){
+    public SchedulingPresenter(SchedulingContract.View view, Attendance attendance, Context context){
         mView = view;
-        mAppointment = appointment;
+        mAttendance = attendance;
         mRequestQueue = Volley.newRequestQueue(context);
     }
 
     @Override
-    public void submitAppointment(String firstName, String lastName) {
+    public void submitAppointment(Attendance attendance) {
         mView.showWorking(true);
-        String url = Paths.AVAILABLE_APPOINTMENTS_URL + "/" + mAppointment.getAppointmentId();
 
-        mAppointment.setUser(new User(firstName, lastName));
+        final String json = Utility.convertPojoToString(attendance);
 
-        final String json = Utility.convertPojoToString(mAppointment);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Paths.SCHEDULE_APPOINTMENT_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i(TAG, response);

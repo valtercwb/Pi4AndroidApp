@@ -3,6 +3,7 @@ package org.cwb.pi4androidapp.contract;
 import org.cwb.pi4androidapp.base.BasePresenter;
 import org.cwb.pi4androidapp.base.BaseView;
 import org.cwb.pi4androidapp.model.Appointment;
+import org.cwb.pi4androidapp.model.Attendance;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface AppointmentContract
          * Show the appointments
          * @param scheduledAppointments - latest list of scheduled appointments
          */
-        void showAppointments(List<Appointment> scheduledAppointments);
+        void showAppointments(List<Attendance> scheduledAppointments);
     }
 
     interface Presenter extends BasePresenter {
@@ -29,6 +30,6 @@ public interface AppointmentContract
          * An Appointment was clicked
          * @param appointment - appointment that was clicked
          */
-        void AppointmentClicked(Appointment appointment);
+        void AppointmentClicked(Attendance appointment);
     }
 }

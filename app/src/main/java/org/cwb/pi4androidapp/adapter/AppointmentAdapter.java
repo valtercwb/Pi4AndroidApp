@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.cwb.pi4androidapp.R;
-import org.cwb.pi4androidapp.model.Appointment;
+import org.cwb.pi4androidapp.model.Attendance;
 
 import java.util.List;
 
@@ -16,12 +16,12 @@ import java.util.List;
  * Adapter for Appointment data, basically encapsulates data for various Android Widgets to bind to
  */
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.ViewHolder> {
-    private List<Appointment> mAppointments;
+    private List<Attendance> mAppointments;
     private AppointmentAdapterClickListener mClickListener;
 
     //Holds our views for each card
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private Appointment currentAppointment;
+        private Attendance currentAppointment;
         public TextView mDateTextView;
         public TextView mPatientsName;
 
@@ -41,10 +41,10 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         }
     }
 
-    public AppointmentAdapter(AppointmentAdapterClickListener listener, @Nullable List<Appointment> appointments){
+    public AppointmentAdapter(AppointmentAdapterClickListener listener, @Nullable List<Attendance> attendances){
         super();
         mClickListener = listener;
-        mAppointments = appointments;
+        mAppointments = attendances;
     }
 
 
@@ -67,15 +67,15 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Appointment current = mAppointments.get(position);
+        Attendance current = mAppointments.get(position);
         holder.currentAppointment = current;
         String username = "";
-        if(current.getUser() != null) {
-            username = current.getUser().getName();
+        if(current.getAttendanceDate() != null) {
+            username = current.getAttendanceDate();
         }
 
-        holder.mDateTextView.setText(current.getFormattedLocalTime());
-        holder.mPatientsName.setText(username);
+        holder.mDateTextView.setText(current.getAttendanceDate());
+        holder.mPatientsName.setText(current.getAttendanceHour());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
