@@ -15,7 +15,7 @@
         <item
             android:id="@+id/nav_appointment"
             android:icon="@drawable/data"
-            android:title="Consultas" />
+            android:title="Agendar Consultas" />
         <item
             android:id="@+id/nav_scheduled"
             android:icon="@drawable/calendar"

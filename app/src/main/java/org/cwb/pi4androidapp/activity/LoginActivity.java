@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     // UI references.
+    TextView tvTerms;
     private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
@@ -51,6 +53,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        tvTerms = (TextView) findViewById(R.id.tvTerms);
+
         sharedPref = getSharedPreferences("org.cwb.pi4androidapp.activity", Context.MODE_PRIVATE);
 
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -60,6 +64,13 @@ public class LoginActivity extends AppCompatActivity {
         mEmailView = (EditText) findViewById(R.id.login);
         mPasswordView = (EditText) findViewById(R.id.password);
 
+        tvTerms.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,TermsActivity.class);
+                LoginActivity.this.startActivity(intent);
+            }
+        });
 
         Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
 

@@ -22,16 +22,22 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
     //Holds our views for each card
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private Attendance currentAppointment;
-        public TextView mDateTextView;
-        public TextView mPatientsName;
+        public TextView tvDate;
+        public TextView tvHour;
+        public TextView tvPatient;
+        public TextView tvDoctor;
 
         private AppointmentAdapterClickListener mClickListener;
 
         public ViewHolder(View v, AppointmentAdapterClickListener listener) {
             super(v);
             mClickListener = listener;
-            mDateTextView = (TextView) v.findViewById(R.id.date_textview);
-            mPatientsName = (TextView) v.findViewById(R.id.patientname_textview);
+            tvDate = (TextView) v.findViewById(R.id.tv_date);
+            tvHour = (TextView) v.findViewById(R.id.tv_hour);
+            tvPatient = (TextView) v.findViewById(R.id.tv_patient);
+            tvDoctor = (TextView) v.findViewById(R.id.tv_doctor);
+
+
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -74,8 +80,10 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             username = current.getAttendanceDate();
         }
 
-        holder.mDateTextView.setText(current.getAttendanceDate());
-        holder.mPatientsName.setText(current.getAttendanceHour());
+        holder.tvDate.setText(current.getAttendanceDate());
+        holder.tvHour.setText(current.getAttendanceHour());
+        holder.tvPatient.setText(current.getAttendancePatientName());
+        holder.tvDoctor.setText(current.getAttendanceDoctorName());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

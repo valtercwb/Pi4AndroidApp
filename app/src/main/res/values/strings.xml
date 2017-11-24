@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">UpApp</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Usuário</string>
@@ -34,6 +34,7 @@
     <string name="test">it worked</string>action_search
     <string name="dialog_title">Error</string>
     <string name="action_search">Buscar</string>
+    <string name="upapp">UpApp</string>
 
     <string-array name="doctors">
         <item>Selecionar</item>

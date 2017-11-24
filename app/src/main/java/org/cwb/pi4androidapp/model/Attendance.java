@@ -14,8 +14,26 @@ public class Attendance implements Parcelable {
     private int attendanceDocId;
     private String attendanceDate;
     private String attendanceHour;
+    private String attendancePatientName;
+    private String attendanceDoctorName;
 
     public Attendance() {
+    }
+
+    public String getAttendancePatientName() {
+        return attendancePatientName;
+    }
+
+    public void setAttendancePatientName(String attendancePatientName) {
+        this.attendancePatientName = attendancePatientName;
+    }
+
+    public String getAttendanceDoctorName() {
+        return attendanceDoctorName;
+    }
+
+    public void setAttendanceDoctorName(String attendanceDoctorName) {
+        this.attendanceDoctorName = attendanceDoctorName;
     }
 
     public int getAttendanceId() {
@@ -70,6 +88,8 @@ public class Attendance implements Parcelable {
         dest.writeInt(this.attendanceDocId);
         dest.writeString(this.attendanceDate);
         dest.writeString(this.attendanceHour);
+        dest.writeString(this.attendancePatientName);
+        dest.writeString(this.attendanceDoctorName);
     }
 
     protected Attendance(Parcel in) {
@@ -78,9 +98,11 @@ public class Attendance implements Parcelable {
         this.attendanceDocId = in.readInt();
         this.attendanceDate = in.readString();
         this.attendanceHour = in.readString();
+        this.attendancePatientName = in.readString();
+        this.attendanceDoctorName = in.readString();
     }
 
-    public static final Parcelable.Creator<Attendance> CREATOR = new Parcelable.Creator<Attendance>() {
+    public static final Creator<Attendance> CREATOR = new Creator<Attendance>() {
         @Override
         public Attendance createFromParcel(Parcel source) {
             return new Attendance(source);

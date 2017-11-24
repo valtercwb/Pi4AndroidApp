@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:weightSum="100"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:background="@drawable/bglands"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="-50dp"
                 android:layout_weight="1"
                 android:contentDescription="image"
                 app:srcCompat="@drawable/logo_preg" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/lobster"
+                android:gravity="top"
+                android:text="@string/upapp"
+                android:textAlignment="center"
+                android:textSize="70sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="6dp"
             android:layout_weight="50"
             android:gravity="bottom"
             android:orientation="vertical">
@@ -48,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="Login"
                 android:textAlignment="center"
+                android:textColor="@color/actionable"
                 android:textSize="30sp" />
 
             <EditText
@@ -69,46 +73,42 @@
                 android:maxLines="1"
                 android:singleLine="true" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="horizontal"
+                android:textAlignment="center">
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center_vertical"
+                    android:text="Estou de acordo com os "
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tvTerms"
+                    android:layout_width="127dp"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:onClick="OnClickListener"
+                    android:text="Termos de uso"
+                    android:textColor="@color/actionable" />
+            </LinearLayout>
+
             <Button
                 android:id="@+id/sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="10dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="0"
-                android:gravity="bottom|center_horizontal"
-                android:orientation="horizontal"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ao utilizar este aplicativo você aceita os"
-                    android:textSize="8sp" />
-
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="66dp"
-                    android:layout_height="34dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:padding="0dp"
-                    android:paddingHorizontal="0dp"
-                    android:paddingLeft="0dp"
-                    android:paddingVertical="0dp"
-                    android:text="Termos de uso"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:textSize="8sp"
-                    style="?android:borderlessButtonStyle"  />
-            </LinearLayout>
         </LinearLayout>
 
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
