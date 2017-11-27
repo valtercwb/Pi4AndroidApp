@@ -62,6 +62,8 @@ public class AppointmentFragment extends Fragment {
 
         // Configurar os Componentes
 
-        return inflater.inflate(R.layout.fragment_exam, container, false);
+        return inflater.inflate(R.layout.fragment_appointment, container, false);
     }
+
+
 }

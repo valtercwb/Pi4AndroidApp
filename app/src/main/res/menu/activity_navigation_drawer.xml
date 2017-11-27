@@ -29,10 +29,6 @@
                 android:icon="@drawable/settings"
                 android:title="Configurações" />
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Site" />
-            <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/information"
                 android:title="Sobre Nós" />

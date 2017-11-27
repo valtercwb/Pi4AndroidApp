@@ -69,17 +69,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="false"
                             android:layout_marginRight="@dimen/cardview_default_elevation"
-                            android:textAlignment="textStart"
                             android:textSize="16dp" />
 
-                        <TextView
-                            android:id="@+id/tv_hour"
-                            style="@style/Default_Title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="false"
-                            android:textAlignment="textStart"
-                            android:textSize="16dp" />
                     </TableRow>
 
                     <TableRow

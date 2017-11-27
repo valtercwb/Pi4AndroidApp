@@ -97,7 +97,7 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
             // Cria e configura o objeto ProgressDialog
             mRefreshProgressDialog = new ProgressDialog(UserAreaActivity.this);
             mRefreshProgressDialog.setTitle("Aguarde");
-            mRefreshProgressDialog.setMessage("Baixando lista de pacientes...");
+            mRefreshProgressDialog.setMessage("Carregando lista de pacientes...");
             mRefreshProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         }
 

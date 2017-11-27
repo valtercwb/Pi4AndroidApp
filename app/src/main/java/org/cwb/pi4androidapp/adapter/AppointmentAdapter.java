@@ -23,7 +23,6 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private Attendance currentAppointment;
         public TextView tvDate;
-        public TextView tvHour;
         public TextView tvPatient;
         public TextView tvDoctor;
 
@@ -33,7 +32,6 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             super(v);
             mClickListener = listener;
             tvDate = (TextView) v.findViewById(R.id.tv_date);
-            tvHour = (TextView) v.findViewById(R.id.tv_hour);
             tvPatient = (TextView) v.findViewById(R.id.tv_patient);
             tvDoctor = (TextView) v.findViewById(R.id.tv_doctor);
 
@@ -80,8 +78,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             username = current.getAttendanceDate();
         }
 
-        holder.tvDate.setText(current.getAttendanceDate());
-        holder.tvHour.setText(current.getAttendanceHour());
+        holder.tvDate.setText(current.getAttendanceDate()+"  "+current.getAttendanceHour());
         holder.tvPatient.setText(current.getAttendancePatientName());
         holder.tvDoctor.setText(current.getAttendanceDoctorName());
     }

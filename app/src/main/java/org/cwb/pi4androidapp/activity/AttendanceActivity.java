@@ -71,7 +71,7 @@ public class AttendanceActivity extends AppCompatActivity implements AttendanceL
             // Cria e configura o objeto ProgressDialog
             mRefreshProgressDialog = new ProgressDialog(AttendanceActivity.this);
             mRefreshProgressDialog.setTitle("Aguarde");
-            mRefreshProgressDialog.setMessage("Lista de horários...");
+            mRefreshProgressDialog.setMessage("Carregando lista de horários...");
             mRefreshProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         }
 

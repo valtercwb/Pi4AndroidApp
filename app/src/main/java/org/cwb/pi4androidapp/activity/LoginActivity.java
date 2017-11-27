@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     SharedPreferences sharedPref;
+    CheckBox checkBox;
 
     String email;
     String pass;
@@ -63,11 +65,12 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.login);
         mPasswordView = (EditText) findViewById(R.id.password);
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
 
         tvTerms.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,TermsActivity.class);
+                Intent intent = new Intent(LoginActivity.this, TermsActivity.class);
                 LoginActivity.this.startActivity(intent);
             }
         });
@@ -78,29 +81,30 @@ public class LoginActivity extends AppCompatActivity {
             final AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
             alertDialog.setMessage("Você não está conectado! Deseja conectar-se a internet?")
                     .setNegativeButton("Não", null)
-                    .setPositiveButton("Sim",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-                                }})
+                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                        }
+                    })
 
                     .create()
                     .show();
-            }
+        }
 
-            mSignInButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        mSignInButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                    email = mEmailView.getText().toString();
-                    pass = mPasswordView.getText().toString();
+                email = mEmailView.getText().toString();
+                pass = mPasswordView.getText().toString();
 
-
-                    if(sharedPref.getString("login", "")!= ""){
+                if (checkBox.isChecked()) {
+                    if (sharedPref.getString("login", "") != "") {
                         loginShared = sharedPref.getString("login", "");
                         passShared = sharedPref.getString("senha", "");
                         userName = sharedPref.getString("user", "");
 
-                        if(loginShared.equalsIgnoreCase(email) && passShared.equalsIgnoreCase(pass)) {
+                        if (loginShared.equalsIgnoreCase(email) && passShared.equalsIgnoreCase(pass)) {
                             Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
                             intent.putExtra("name", userName);
                             LoginActivity.this.startActivity(intent);
@@ -151,8 +155,15 @@ public class LoginActivity extends AppCompatActivity {
                         queue.add(lg);
 
                     }
+                } else {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
+                    alertDialog.setMessage("Aceite os termos!")
+                            .setNegativeButton("Para acessar este aplicativo, você deve ler e aceitar os termos de uso.", null)
+                            .create()
+                            .show();
                 }
-            });
+            }
+        });
     }
 }
 

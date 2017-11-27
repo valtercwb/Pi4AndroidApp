@@ -82,7 +82,7 @@
                         tools:text="Dados Paciente" />
 
                     <TableLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="10dp">
@@ -93,12 +93,13 @@
 
                             <TextView
                                 android:id="@+id/tvNome"
-                                android:layout_width="wrap_content"
+                                android:layout_width="85dp"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="Nome"
                                 android:paddingHorizontal="16dp"
                                 android:paddingVertical="10dp"
                                 android:text="Nome: "
+                                android:textSize="12sp"
                                 tools:text="Nome" />
 
                             <EditText
@@ -118,6 +119,37 @@
                         </TableRow>
 
                         <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvDPP"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="Nome"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="10dp"
+                                android:text="DPP"
+                                android:textSize="12sp"
+                                tools:text="DPP" />
+
+                            <EditText
+                                android:id="@+id/etDPP"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:fadingEdge="horizontal"
+                                android:gravity="top|center_vertical"
+                                android:inputType="textPersonName"
+                                android:text="22/04/2018"
+                                android:textColor="#313131"
+                                android:textSize="14dp"
+                                android:visibility="visible" />
+                        </TableRow>
+
+                        <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -129,6 +161,7 @@
                                 android:paddingHorizontal="16dp"
                                 android:paddingVertical="10dp"
                                 android:text="Email: "
+                                android:textSize="12sp"
                                 tools:text="Email" />
 
                             <EditText
@@ -160,6 +193,7 @@
                                 android:paddingHorizontal="16dp"
                                 android:paddingVertical="10dp"
                                 android:text="Telefone: "
+                                android:textSize="12sp"
                                 tools:text="Telefone" />
 
                             <EditText
@@ -184,12 +218,13 @@
 
                             <TextView
                                 android:id="@+id/tvAge"
-                                android:layout_width="match_parent"
+                                android:layout_width="88dp"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="Nome"
                                 android:paddingHorizontal="16dp"
                                 android:paddingVertical="10dp"
                                 android:text="Idade: "
+                                android:textSize="12sp"
                                 tools:text="Idade" />
 
                             <EditText
@@ -220,6 +255,7 @@
                                 android:paddingHorizontal="16dp"
                                 android:paddingVertical="10dp"
                                 android:text="Tipo sanguineo: "
+                                android:textSize="12sp"
                                 tools:text="Tipo sanguineo" />
 
                             <EditText
@@ -251,6 +287,7 @@
                                 android:paddingHorizontal="16dp"
                                 android:paddingVertical="10dp"
                                 android:text="Tipo Sangue Conj: "
+                                android:textSize="12sp"
                                 tools:text="Tipo Sangue Conj." />
 
                             <EditText
@@ -281,6 +318,7 @@
                                 android:paddingHorizontal="16dp"
                                 android:paddingVertical="10dp"
                                 android:text="Ultimo Periodo: "
+                                android:textSize="12sp"
                                 tools:text="Ultimo Periodo" />
 
                             <EditText
@@ -311,6 +349,7 @@
                                 android:paddingHorizontal="16dp"
                                 android:paddingVertical="10dp"
                                 android:text="Status: "
+                                android:textSize="12sp"
                                 tools:text="Status" />
 
                             <EditText
@@ -533,7 +572,7 @@
 
                             <EditText
                                 android:id="@+id/etNeoplasm"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:editable="false"
                                 android:ems="10"

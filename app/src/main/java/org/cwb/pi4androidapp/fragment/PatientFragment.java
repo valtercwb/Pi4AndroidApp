@@ -1,6 +1,8 @@
 package org.cwb.pi4androidapp.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,7 +19,7 @@ import java.util.Optional;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PatientFragment extends Fragment {
+public class PatientFragment extends Fragment implements AppBarLayout.OnOffsetChangedListener {
 
     private Bundle bundle;
     Patient p = new Patient();
@@ -46,6 +48,9 @@ public class PatientFragment extends Fragment {
     @BindView(R.id.etSyphilis) EditText etSyphilis;
     @BindView(R.id.etGonorrhea) EditText etGonorrhea;
     @BindView(R.id.etHiv) EditText etHiv;
+    @BindView(R.id.app_bar_layout) AppBarLayout appBarLayout;
+    @BindView(R.id.etDPP) EditText etDpp;
+    String patName ="";
 
     public PatientFragment() {
         // Required empty public constructor
@@ -64,9 +69,9 @@ public class PatientFragment extends Fragment {
         if(bundle!=null)
            p = bundle.getParcelable("pa");
 
-        //toolbar.setTitle(p.getPatientName());
-
         etName.setText(p.getPatientName());
+        //etDpp.setText();
+        patName = p.getPatientName();
         etEmail.setText(p.getPatientEmail());
         etPhone.setText(p.getPatientPhone());
         etAge.setText(String.valueOf(p.getPatientAge()));
@@ -90,7 +95,9 @@ public class PatientFragment extends Fragment {
         etSyphilis.setText((p.isSifilis())?"Sim":"Não");
         etGonorrhea.setText((p.isGonorreia())?"Sim":"Não");
         etHiv.setText((p.isHiv())?"Sim":"Não");
-
+        collapsingToolbarLayout.setTitle(patName);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent)); // transperent color = #00000000
+        collapsingToolbarLayout.setCollapsedTitleTextColor(0xFFFFFFFF); //Color of your title
         return v;
     }
 
@@ -103,5 +110,10 @@ public class PatientFragment extends Fragment {
         args.putSerializable("sdsd", (Serializable) patient);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+     toolbar.setTitle(patName);
     }
 }

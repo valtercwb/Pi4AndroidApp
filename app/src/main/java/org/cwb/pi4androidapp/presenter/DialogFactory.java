@@ -24,8 +24,8 @@ public class DialogFactory {
     public static AlertDialog getSuccessDialog(Activity activity){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        builder.setMessage("Appointment Made")
-                .setTitle("Success!");
+        builder.setMessage("Consulta Agendada com sucesso")
+                .setTitle("Status da Operação!");
 
         return builder.create();
     }

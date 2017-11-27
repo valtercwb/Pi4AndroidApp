@@ -37,6 +37,7 @@ import com.google.gson.Gson;
 import org.cwb.pi4androidapp.R;
 import org.cwb.pi4androidapp.contract.SchedulingContract;
 import org.cwb.pi4androidapp.model.Attendance;
+import org.cwb.pi4androidapp.presenter.DialogFactory;
 import org.json.JSONException;
 
 import java.io.UnsupportedEncodingException;
@@ -53,7 +54,7 @@ import static org.cwb.pi4androidapp.ws.Paths.SCHEDULE_APPOINTMENT_URL;
 public class ScheduleAppointmentActivity extends AppCompatActivity implements SchedulingContract.View {
 
     private SchedulingContract.Presenter mPresenter;
-
+    String responseString="";
     int patientId = 0;
     int consultaId = 0;
     String patientName = "";
@@ -73,7 +74,6 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Sc
     Button button;
     @BindView(R.id.progress_bar)
     protected ProgressBar mProgressSpinner;
-
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -145,7 +145,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Sc
         return milliTime;
     }
 
-    public static void postNewAppointment(Context context, final Attendance attendance) {
+    public void postNewAppointment(Context context, final Attendance attendance) {
 
         // mPostCommentResponse.requestStarted();
         Gson gson = new Gson();
@@ -155,10 +155,23 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Sc
 
             final String mRequestBody = jsonBody.toString();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, SCHEDULE_APPOINTMENT_URL, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.PUT, SCHEDULE_APPOINTMENT_URL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.i("LOG_VOLLEY", response);
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScheduleAppointmentActivity.this);
+                    if(response.equalsIgnoreCase("200")){
+                        alertDialog.setMessage("Status da operação!")
+                                .setNegativeButton("Consulta agendada com sucesso.", null)
+                                .create()
+                                .show();
+                    }else{
+
+                        alertDialog.setMessage("Status da operação!")
+                                .setNegativeButton("Não foi possível concluir a operação.", null)
+                                .create()
+                                .show();
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -185,10 +198,9 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Sc
                 protected Response<String> parseNetworkResponse(NetworkResponse response) {
                     String responseString = "";
                     if (response != null) {
-
                         responseString = String.valueOf(response.statusCode);
-
                     }
+
                     return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                 }
             };

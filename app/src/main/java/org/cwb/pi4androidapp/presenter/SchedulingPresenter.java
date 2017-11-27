@@ -3,7 +3,6 @@ package org.cwb.pi4androidapp.presenter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -14,7 +13,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.cwb.pi4androidapp.contract.SchedulingContract;
 import org.cwb.pi4androidapp.model.Appointment;
 import org.cwb.pi4androidapp.model.Attendance;

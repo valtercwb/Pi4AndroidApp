@@ -43,7 +43,7 @@
                 android:layout_marginBottom="-120dp"
                 android:layout_weight="2"
                 android:contentDescription="logoImg"
-                app:srcCompat="@drawable/logo_preg" />
+                app:srcCompat="@drawable/logo" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -64,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
@@ -93,8 +94,9 @@
                 android:hint="@string/prompt_password"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
-                android:inputType="number"
+                android:inputType="textPassword"
                 android:maxLines="1"
+                android:password="true"
                 android:singleLine="true" />
 
             <LinearLayout
@@ -108,18 +110,19 @@
 
                 <CheckBox
                     android:id="@+id/checkBox"
-                    android:layout_width="78dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right|center_vertical"
-                    android:text="Eu li e aceito  os"
+                    android:text="Eu estou de acordo com os"
                     android:textAlignment="textStart"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tvTerms"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="-40dp"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:gravity="center_vertical"
@@ -131,12 +134,11 @@
 
             <Button
                 android:id="@+id/sign_in_button"
-                style="@style/?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="178dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:layout_weight="2"
-                android:text="@string/action_sign_in"
+                android:maxWidth="30dp"
+                android:text="Entrar"
                 android:textStyle="bold" />
 
         </LinearLayout>
