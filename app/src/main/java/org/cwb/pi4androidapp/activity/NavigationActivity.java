@@ -2,6 +2,7 @@ package org.cwb.pi4androidapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -51,6 +53,7 @@ public class NavigationActivity extends AppCompatActivity
     @BindView(R.id.nav_view)
     public NavigationView mNavigationView;
     ActionBarDrawerToggle toggle;
+    SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,7 @@ public class NavigationActivity extends AppCompatActivity
         setContentView(R.layout.activity_navigation);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-
+        sharedPref = getSharedPreferences("org.cwb.pi4androidapp.activity", Context.MODE_PRIVATE);
         toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -100,17 +103,23 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            case R.id.action_info:
+                showLastConnectionDate();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    private void showLastConnectionDate() {
+            if(sharedPref.getString("ultimoAcesso", "")!=null){
+            String data = sharedPref.getString("ultimoAcesso", "");
+            Toast.makeText(this,"Os dados do aplicativo podem estar desatualizados. Último acesso: "+data,Toast.LENGTH_LONG).show();
+            }
     }
 
     @Override

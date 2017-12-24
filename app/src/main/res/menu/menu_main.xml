@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
         <item
-            android:id="@+id/action_search"
+            android:id="@+id/action_info"
             android:icon="@android:drawable/ic_menu_info_details"
             android:iconTint="#f7f452"
             android:tooltipText="Buscar"

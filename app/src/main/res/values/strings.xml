@@ -13,7 +13,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_navigation">Dados Gerais</string>
+    <string name="title_activity_navigation">Consultas por mês</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -41,6 +41,23 @@
         <item>Diogo Alpandre</item>
         <item>Danielle Dalmazo</item>
         <item>Maria De Medeiros</item>
+    </string-array>
+
+    <string-array name="appoints">
+        <item><b>Motivo:</b> Pre-natal \n<b>Data:</b> 07-06-2017 \t<b>Hora:</b> 09:30</item>
+        <item><b>Motivo:</b> Pre-natal \n<b>Data:</b> 07-06-2017 \t<b>Hora:</b> 09:30</item>
+        <item><b>Motivo:</b> Pre-natal \n<b>Data:</b> 07-06-2017 \t<b>Hora:</b> 09:30</item>
+        <item><b>Motivo:</b> Pre-natal \n<b>Data:</b> 07-06-2017 \t<b>Hora:</b> 09:30</item>
+        <item><b>Motivo:</b> Pre-natal \n<b>Data:</b> 07-06-2017 \t<b>Hora:</b> 09:30</item>
+        <item><b>Motivo:</b> Pre-natal \n<b>Data:</b> 07-06-2017 \t<b>Hora:</b> 09:30</item>
+        <item><b>Motivo:</b> Pre-natal \n<b>Data:</b> 07-06-2017 \t<b>Hora:</b> 09:30</item>
+    </string-array>
+
+    <string-array name="exams">
+        <item><b>Nome:</b> Urina \n<b>Data do exame:</b> 07-06-2017 \t<b>Hora:</b> 13:30 </item>
+        <item><b>Nome:</b> Hemograma \n<b>Data do exame:</b> 25-08-2017 \t<b>Hora:</b> 13:30</item>
+        <item><b>Nome:</b> Ecografia\n<b>Data do exame:</b> 01-09-2017 \t<b>Hora:</b> 08:00</item>
+        <item><b>Nome:</b> Transvaginal\n<b>Data do exame:</b> 03-10-2017 \t<b>Hora:</b> 10:30</item>
     </string-array>
 
 </resources>

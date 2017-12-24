@@ -38,8 +38,8 @@
 
             <ImageView
                 android:id="@+id/logo_image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
                 android:layout_marginBottom="-120dp"
                 android:layout_weight="2"
                 android:contentDescription="logoImg"
@@ -96,7 +96,6 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:password="true"
                 android:singleLine="true" />
 
             <LinearLayout
@@ -135,7 +134,7 @@
             <Button
                 android:id="@+id/sign_in_button"
                 android:layout_width="178dp"
-                android:layout_height="wrap_content"
+                android:layout_height="16dp"
                 android:layout_weight="2"
                 android:maxWidth="30dp"
                 android:text="Entrar"

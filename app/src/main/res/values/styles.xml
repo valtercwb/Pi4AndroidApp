@@ -17,7 +17,10 @@
     <style name="Default_Title" parent="@style/Default_TextField">
         <item name="android:textSize">24sp</item>
     </style>
-
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

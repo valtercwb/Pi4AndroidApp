@@ -112,8 +112,8 @@ AppBarLayout.OnOffsetChangedListener {
         mRefreshProgressDialog.hide();
         if (success) {
 
-            // AppointAdapter appointAdapter = new AppointAdapter(appointList.GetAppointmentList());
-            // mAppointListView.setAdapter(appointAdapter);
+            //AppointAdapter appointAdapter = new AppointAdapter(appointList.GetAppointmentList());
+           // mAppointListView.setAdapter(appointAdapter);
 
             bundle.putParcelable("pa",p);
             viewPager = (ViewPager) findViewById(R.id.pager);
@@ -214,17 +214,17 @@ public class AppointAdapter extends ArrayAdapter<Appointment> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // If we weren' given a view, inflate one
         if (convertView == null) {
-            convertView = PatientDetailsActivity.this.getLayoutInflater().inflate(R.layout.list_item_appoint, null);
+            convertView = PatientDetailsActivity.this.getLayoutInflater().inflate(R.layout.historic_appoint_list, null);
         }
 
         // Get components
-        TextView tvAppointDate = convertView.findViewById(R.id.tvAppointDate);
-        TextView tvAppointReason = convertView.findViewById(R.id.tvSpeacialty);
+        TextView tvAppointDate = convertView.findViewById(R.id.textView10);
+        TextView tvAppointReason = convertView.findViewById(R.id.textView11);
 
         // Configure the view for this Country
         Appointment c = getItem(position);
         tvAppointDate.setText(c.getAppointmentId());
-        tvAppointReason.setText(c.getAppointmentId()+ " semanas ");
+        tvAppointReason.setText(c.getAppDate()+ " semanas ");
 
         return convertView;
     }

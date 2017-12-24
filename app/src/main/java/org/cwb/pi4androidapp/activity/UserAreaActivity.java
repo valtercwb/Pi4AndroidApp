@@ -2,7 +2,9 @@ package org.cwb.pi4androidapp.activity;
 
 import android.app.ProgressDialog;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +20,9 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.cwb.pi4androidapp.R;
@@ -32,6 +36,7 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
     ListView mPatientListView;
     ProgressDialog mRefreshProgressDialog;
     PatientsAdapter adapter;
+    SharedPreferences sharedPref;
 
     //
     DatabaseTable db = new DatabaseTable(this);
@@ -54,6 +59,11 @@ public class UserAreaActivity extends AppCompatActivity implements PatientList.R
         }else{
             getSupportActionBar().setTitle("Marcar consulta");
         }
+        sharedPref = getSharedPreferences("org.cwb.pi4androidapp.activity", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        editor.putString("ultimoAcesso",timeStamp);
+        editor.apply();
 
         // Configurar os Componentes
         mPatientListView = (ListView) findViewById(R.id.patient_list);

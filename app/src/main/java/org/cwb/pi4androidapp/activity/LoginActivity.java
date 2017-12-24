@@ -30,6 +30,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.cwb.pi4androidapp.ws.Login;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -108,6 +111,12 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
                             intent.putExtra("name", userName);
                             LoginActivity.this.startActivity(intent);
+                        }else{
+                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
+                            alertDialog.setMessage("Usuário ou senha inválido!")
+                                    .setNegativeButton("Verifique se digitou seus dados corretamente", null)
+                                    .create()
+                                    .show();
                         }
 
                     } else {
@@ -127,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                                         editor.putString("login", email);
                                         editor.putString("senha", pass);
                                         editor.putString("user", jsonObject.getString("userName"));
+
                                         editor.apply();
 
                                         LoginActivity.this.startActivity(intent);
